@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <a href="{{ path('user', { id: post.author.id }) }}">{{ post.author.username }}</a> - {{ post.date|date("d.m.Y h:i") }}<br>
+        <img src="{{ post.image|raw }}"><br>
+        {{ post.content|raw }}<br>
+    </div>
+
+    <h2>Comments:</h2>
+    <ul class="posts">
+    {% for comment in comments %}
+        <li>
+            <a href="{{ comment.url }}">{{ comment.name }}</a> - {{ comment.date|date("d.m.Y h:i") }}: {{ comment.content|raw }}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="" onclick="deleteComment(event, '{{ comment.id }}');">[X]</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <div class="post">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            Posting as {{ app.user.username }}
+        {% endif %}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        function deleteComment(event, id) {
+            var link = event.currentTarget.href;
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE", link, true);
+            xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhttp.onload = function () {
+                alert(xhttp.response);
+            };
+            xhttp.send(id);
+        }
+    </script>
+{% endblock %}

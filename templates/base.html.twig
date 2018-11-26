@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% endblock %}
+
+    </head>
+    <body>
+
+    {% block nav %}
+        <ul id="nav">
+            <li><a href="{{ path('home') }}">Home</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('create') }}">Create Post</a></li>
+            {% endif %}
+            <li><a href="">Impressum</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('logout') }}">Logout as {{ app.user.username }}</a></li>
+            {% else %}
+                <li><a href="{{ path('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    {% endblock %}
+
+    {% block body %}
+    {% endblock %}
+
+
+    {% block javascripts %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+
+    </body>
+</html>

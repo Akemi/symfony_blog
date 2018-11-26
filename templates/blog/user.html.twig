@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body %}
+
+    <div class="post">
+        <b>Name:</b> {{ user.username }}<br>
+        <b>Mail:</b> {{ user.mail }}<br>
+        <b>Role:</b>
+        {% for role in user.roles %}
+            {{ role }},
+        {% endfor %}
+        <br>
+        {#{{ dump(user.posts) }}
+        {{ dump(user.comments) }}#}
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,44 @@
+#nav {
+    margin: 0px;
+    padding: 2px;
+    border: 2px black solid;
+    border-width: 2px 0px 2px 0px;
+}
+
+#nav > li {
+    display: inline-block;
+    margin: 0px;
+    padding: 5px;
+}
+
+#nav > li:last-child {
+    float: right;
+}
+
+.posts {
+    margin: 0px;
+    padding: 0px;
+}
+
+.posts > li {
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+    background-color: lightblue;
+}
+
+.post {
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+    background-color: lightblue;
+}
+
+#pages {
+    margin: 5px 0px 5px 0px;
+    padding: 5px;
+    background-color: lightblue;
+    text-align: center;
+}
+
+#pages > li {
+    display: inline-block;
+}
