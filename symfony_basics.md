@@ -1,3 +1,5 @@
+## Install
+
 Dependencies composer and php
 ```
 brew install composer php
@@ -7,132 +9,145 @@ PHPStorm Plugins
 Symfony (activate), PHP Annotation, PHP Toolbox
 
 
-Create a project
-
+##### Create a project
 ```
 composer create-project symfony/website-skeleton my-project
 ```
 
-Install web server manually (symfony/skeleton)
+##### Run project
+```
+./bin/console server:run
+```
+
+## Install (Optional)
+
+##### Install web server manually (symfony/skeleton)
 ```
 composer require server
 ```
 
-Install composer manually (black bar)
+##### Install profiler manually (black bar)
 ```
 composer require profiler --dev
 ```
 
-Install composer manually (black bar)
+##### Unpack a dependency (black bar)
 ```
 composer require debug --dev
 composer unpack debug
 ```
 
-Run project
-
-```
-./bin/console server:run
-```
-
-Setting up existing project
+## Setting up existing project
 
 ```
 composer install
 ```
 
-Security checker
+## Useful commands
 
+##### Security checker
 ```
 composer require sensiolabs/security-checker --dev
 ./bin/console security:check
 ```
 
-Remove cache
+##### Remove cache
 ```
 rm -rf var/cache/dev/*
 ```
-Get routes
+
+##### Get routes
 
 ```
 ./bin/console debug:router
 ```
-```
-@Route("/", name="app_home")
-```
-```
-{{ path('app_home') }}
-{{ path('article_show', {id: 'test'}) }}
-```
 
-Logging
+##### Logging
 ```
 tail -f var/log/dev.log
 ```
 
-Getting services List
+##### Getting services List
 ```
 ./bin/console debug:autowiring
 ```
 
-Twig
-https://twig.symfony.com/doc/2.x/
-
-Profile
+##### Profile
 ```
 dump()
 {{ dump() }}
 ```
 
-MySQL
-Change DATABASE_URL in `.env` 
+## Setting up Routes
 
-Create the configured Database
+##### Controller
+```
+@Route("/", name="app_home")
+```
+
+##### Twig usage
+```
+{{ path('app_home') }}
+{{ path('article_show', {id: 'test'}) }}
+```
+
+##### Twig general usage
+```
+https://twig.symfony.com/doc/2.x/
+```
+
+## MySQL
+Change DATABASE_URL in `.env`.
+
+##### Create the configured Database
 ```
 ./bin/console doctrine:database:create
 ```
 
-Create a Table/Entity, rerun to add new fields
+##### Create a Table/Entity, rerun to add new fields
 ```
 ./bin/console make:entity
 ```
 
-Create Table scheme, rerun to update scheme
+##### Create Table scheme, rerun to update scheme
 ```
 ./bin/console make:migration
 ```
 
-Create Tables in Database, rerun to alter database
+##### Create Tables in Database, rerun to update database
 ```
 ./bin/console doctrine:migrations:migrate
 ```
 
-Adding properties manually and generate getter/setter
+##### Adding properties manually and generate getter/setter
 ```
 ./bin/console make:entity --regenerate
 ```
 
-MySQL add dummy data/fixtures
+#####  MySQL add dummy data/fixtures
 https://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html#multiple-files
 ```
 composer require --dev doctrine/doctrine-fixtures-bundle
 ```
-Create new Fixture
+
+##### Create new Fixture
 ```
 ./bin/console make:fixture
 ```
 
-Load fixture into database
+##### Load fixture into database
 ```
 ./bin/console doctrine:fixtures:load
 ```
 
-Create new Controller
+## Useful Classes
+
+##### Create new Controller
 ```
 ./bin/console make:controller
 ```
 
-Create Login
+##### Create Login
 ```
 ./bin/console make:auth
 ```
